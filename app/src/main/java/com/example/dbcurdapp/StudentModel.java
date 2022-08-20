@@ -7,11 +7,7 @@ public class StudentModel {
 
     @Override
     public String toString() {
-        return "StudentModel{" +
-                "name='" + name + '\'' +
-                ", rollNmber=" + rollNmber +
-                ", isEnroll=" + isEnroll +
-                '}';
+        return "Name: "+name+", RollNo: " +rollNmber+ ", Enrolled: " + isEnroll;
     }
 
     public StudentModel(String name, int rollNmber, boolean isEnroll) {
