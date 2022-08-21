@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button addButton, viewAllButton;
+    Button addButton, viewAllButton, deleteBtn, updateBtn;
     TextView nameTxtView, rollTxtView;
     Switch switchState;
     ListView listViewStudent;
@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         addButton = findViewById(R.id.addBtn);
+        deleteBtn = findViewById(R.id.deleteBtn);
+        updateBtn = findViewById(R.id.updateBtn);
         viewAllButton =  findViewById(R.id.viewAllBtn);
         nameTxtView = findViewById(R.id.studentTxtView);
         rollTxtView = findViewById(R.id.RollNoTxtView);
@@ -39,12 +41,44 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     studentModel = new StudentModel(nameTxtView.getText().toString(), Integer.parseInt(rollTxtView.getText().toString()), switchState.isChecked());
                     //Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
+                    DBHelper dbHelper  = new DBHelper(MainActivity.this);
+                    dbHelper.addStudent(studentModel);
+                    Toast.makeText(MainActivity.this, "Added Student", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
                     Toast.makeText(MainActivity.this, "Error while Adding", Toast.LENGTH_SHORT).show();
                 }
-                DBHelper dbHelper  = new DBHelper(MainActivity.this);
-                dbHelper.addStudent(studentModel);
+
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    DBHelper dbHelper  = new DBHelper(MainActivity.this);
+                    dbHelper.deleteStudent(rollTxtView.getText().toString());
+                    Toast.makeText(MainActivity.this, "Student Deleted", Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    DBHelper dbHelper  = new DBHelper(MainActivity.this);
+                    dbHelper.updateStudent(rollTxtView.getText().toString(), nameTxtView.getText().toString(), switchState.isChecked());
+                    Toast.makeText(MainActivity.this, "Student Deleted", Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e){
+                    Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -56,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
                         (MainActivity.this, android.R.layout.simple_list_item_1,list);
                 listViewStudent.setAdapter(arrayAdapter);
+                Toast.makeText(MainActivity.this, "List Refreshed", Toast.LENGTH_SHORT).show();
 
             }
+
+
         });
     }
 

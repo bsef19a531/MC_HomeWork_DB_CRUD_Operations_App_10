@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //String createTableSTatementOne = "CREATE TABLE CustTable(CustomerID Integer PRIMARY KEY AUTOINCREMENT, " + CUSTOMER_NAME_FIRST + " Text, CustomerAge Int, ActiveCustomer BOOL) ";
         String createTableSTatement = "CREATE TABLE " + STUDENT_TABLE + "(" +
                 STUDENT_ID + " Integer PRIMARY KEY AUTOINCREMENT, " + STUDENT_NAME + " Text, "
-                + STUDENT_ROLL + " Int, " + STUDENT_ENROLL + " BOOL) ";
+                + STUDENT_ROLL + " Int UNIQUE, " + STUDENT_ENROLL + " BOOL) ";
         db.execSQL(createTableSTatement);
     }
 
@@ -67,6 +67,29 @@ public class DBHelper extends SQLiteOpenHelper {
 
         cursorCourses.close();
         return studentArrayList;
+    }
+
+    public void updateStudent(String Roll,String Name, Boolean status)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(STUDENT_NAME, Name);
+        cv.put(STUDENT_ENROLL, status);
+        db.update(STUDENT_TABLE, cv, Roll, new String[]{Roll});
+        db.close();
+    }
+
+
+    public void deleteStudent(String rollNo)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + STUDENT_TABLE + " WHERE " +STUDENT_ROLL+ " = ?", new String[]{rollNo});
+//        if(cursor.getCount()>0)
+//        {
+            db.delete(STUDENT_TABLE, STUDENT_NAME, new String[]{rollNo});
+            db.close();
+//        }
     }
 
 
