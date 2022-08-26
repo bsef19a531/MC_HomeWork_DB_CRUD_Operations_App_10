@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     DBHelper dbHelper  = new DBHelper(MainActivity.this);
-                    dbHelper.deleteStudent(rollTxtView.getText().toString());
+                    dbHelper.deleteStudent(Integer.parseInt(rollTxtView.getText().toString()));
                     Toast.makeText(MainActivity.this, "Student Deleted", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     DBHelper dbHelper  = new DBHelper(MainActivity.this);
-                    dbHelper.updateStudent(rollTxtView.getText().toString(), nameTxtView.getText().toString(), switchState.isChecked());
+                    dbHelper.updateStudent(Integer.parseInt(rollTxtView.getText().toString()), nameTxtView.getText().toString(), switchState.isChecked());
                     Toast.makeText(MainActivity.this, "Student Deleted", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){

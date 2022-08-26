@@ -38,10 +38,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_weight="1"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="Add" />
+            android:text="Add"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/deleteBtn"
@@ -51,7 +52,9 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Delete" />
+            android:text="Delete"
+            android:textSize="12sp" />
+
         <Button
             android:id="@+id/updateBtn"
             android:layout_width="wrap_content"
@@ -59,17 +62,19 @@
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Update" />
+            android:text="Update"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/viewAllBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="24dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="View All" />
+            android:text="View All"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <EditText
@@ -91,10 +96,10 @@
         android:id="@+id/switchState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         android:checked="true"
         android:minHeight="48dp"
-        android:text="Active User"
+        android:text="Enrolled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

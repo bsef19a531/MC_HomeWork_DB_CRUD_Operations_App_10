@@ -69,25 +69,25 @@ public class DBHelper extends SQLiteOpenHelper {
         return studentArrayList;
     }
 
-    public void updateStudent(String Roll,String Name, Boolean status)
+    public void updateStudent(int Roll,String Name, Boolean status)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(STUDENT_NAME, Name);
         cv.put(STUDENT_ENROLL, status);
-        db.update(STUDENT_TABLE, cv, Roll, new String[]{Roll});
+        db.update(STUDENT_TABLE, cv,STUDENT_ROLL +" = "+ Roll, null);
         db.close();
     }
 
 
-    public void deleteStudent(String rollNo)
+    public void deleteStudent(int rollNo)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 //        Cursor cursor = db.rawQuery("SELECT * FROM " + STUDENT_TABLE + " WHERE " +STUDENT_ROLL+ " = ?", new String[]{rollNo});
 //        if(cursor.getCount()>0)
 //        {
-            db.delete(STUDENT_TABLE, STUDENT_NAME, new String[]{rollNo});
+            db.execSQL("DELETE FROM "+STUDENT_TABLE+ " WHERE " + STUDENT_ROLL + " = "+ rollNo );
             db.close();
 //        }
     }
