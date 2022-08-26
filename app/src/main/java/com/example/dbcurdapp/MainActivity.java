@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     DBHelper dbHelper  = new DBHelper(MainActivity.this);
                     dbHelper.updateStudent(Integer.parseInt(rollTxtView.getText().toString()), nameTxtView.getText().toString(), switchState.isChecked());
-                    Toast.makeText(MainActivity.this, "Student Deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Student Updated", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
                     Toast.makeText(MainActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
